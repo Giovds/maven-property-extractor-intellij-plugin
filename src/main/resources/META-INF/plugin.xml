@@ -1,0 +1,38 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.giovds.maven-property-extractor-plugin</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Maven Property Extractor</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor url="https://github.com/Giovds/maven-property-extractor-intellij-plugin">Giovds</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Extracts a property from the current cursor position to the <code>properties</code> element in the Maven <code>pom.xml</code> file<br>
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <intentionAction>
+            <className>com.giovds.mavenpropertyextractor.PropertyExtractorIntentionAction</className>
+        </intentionAction>
+    </extensions>
+
+    <actions>
+        <action id="com.giovds.mavenpropertyextractor.PopupDialogAction" class="com.giovds.mavenpropertyextractor.PopupDialogAction"
+                text="Extract Property" description="Extracts the item to the properties element">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
