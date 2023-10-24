@@ -17,6 +17,18 @@
     Extracts a property from the current cursor position to the <code>properties</code> element in the Maven <code>pom.xml</code> file<br>
   ]]></description>
 
+    <change-notes><![CDATA[
+    <h2>Features</h2>
+    <ul>
+      <li>Right-click on an XML element to move it to the properties.</li>
+      <li>Alt-Enter or CMD-Option to move it to the properties.</li>
+    </ul>
+    <h2>Bug Fixes</h2>
+    <ul>
+      <li>Fix issue with content of property</li>
+    </ul>
+  ]]></change-notes>
+
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>

@@ -45,16 +45,15 @@ class PropertyExtractorService {
             throw RuntimeException("No surrounding XML element was found");
         }
 
-        var versionNameTag: String? = null
         val innerXmlTag: XmlTag = surroundingXmlTags.first()
+        val initialInputValue: String = innerXmlTag.value.text
+
+        var suggestion: String = initialInputValue
         if (innerXmlTag.text.startsWith("<version>") && innerXmlTag.text.endsWith("</version>")) {
-            versionNameTag = innerXmlTag.parentTag!!.findFirstSubTag("artifactId")!!.value.text
+            suggestion = innerXmlTag.parentTag!!.findFirstSubTag("artifactId")!!.value.text.plus(".version")
         }
-        var initialInputValue: String = innerXmlTag.value.text
-        if (versionNameTag != null) {
-            initialInputValue = versionNameTag.plus(".version")
-        }
-        val propertyName: String = getUserInputForPropertyName(project, initialInputValue, innerXmlTag) ?: return
+
+        val propertyName: String = getUserInputForPropertyName(project, suggestion, innerXmlTag) ?: return
         val projectRoot: XmlTag = file.castSafelyTo<XmlFile>()!!.rootTag!!
 
         WriteCommandAction.runWriteCommandAction(project) {
